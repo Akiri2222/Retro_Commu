@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>アカウント名</th>
+      <th>メールアドレス</th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to(admin_user_path(user.id)) do %>
+          <%= user.name %>
+        <% end %>
+      </td>
+      <td><%= user.account_name %></td>
+      <td><%= user.email %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
