@@ -1,0 +1,19 @@
+<%= form_with model: @post, url: post_path do |f| %>
+  <table>
+    <tr>
+      <td>タイトル</td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td>ジャンル</td>
+      <td><%= f.collection_select(:genre_id, Genre.all, :id, :name) %></td>
+    </tr>
+    <tr>
+      <td>本文</td>
+      <td><%= f.text_area :text %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "変更を保存" %></td>
+    </tr>
+  </table>
+<% end %>

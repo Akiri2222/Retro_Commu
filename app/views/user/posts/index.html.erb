@@ -1,0 +1,13 @@
+<% @posts.each do |post| %>
+  <table>
+    <tr>
+      <td>
+        <%= link_to post_path(post.id) do %>
+          <%= post.title %>
+        <% end %>
+      </td>
+      <td><%= post.genre.name %></td>
+      <td><%= post.text %></td>
+    </tr>
+  </table>
+<% end %>
