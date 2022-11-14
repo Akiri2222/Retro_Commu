@@ -18,16 +18,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to: "homes#top"
     get "about" => "homes#about", as: :about
 
-    resources :posts
-    resources :genres
-    resources :book_marks
-    resources :comments
-    resources :tags
-    resources :users do
-      collection do
-        get 'search'
-      end
+    resources :posts do
+      resources :comments
+      resource :book_marks
     end
+    resources :genres
+    resources :tags
+    resources :users
+    get '/search', to: 'searches#search'
   end
 
   get "admin" => "admin/homes#top", as: :admin
