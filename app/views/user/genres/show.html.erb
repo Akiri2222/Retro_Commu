@@ -1,0 +1,5 @@
+<% @genre.posts.each do |post| %>
+  <%= link_to post_path(post.id) do %>
+    <%= post.title %>
+  <% end %>
+<% end %>
