@@ -1,25 +1,21 @@
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :search
 
-  def search
-    @q = User.ransack(params[:q])
-  end
 
   def index
-    @users = @q.result(distinct: true)
+    @users = User.all
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(current_user.id)
     else
@@ -27,9 +23,17 @@ class User::UsersController < ApplicationController
     end
   end
 
+  def book_marks
+    @user = User.find(params[:id])
+    book_marks = BookMark.where(user_id: @user.id).pluck(:post_id)
+    @book_mark_posts = Post.find(book_marks)
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :account_name, :email, :biography)
   end
+
+
 end

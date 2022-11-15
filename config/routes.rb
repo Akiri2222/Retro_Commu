@@ -20,11 +20,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     resources :posts do
       resources :comments
-      resource :book_marks
+      resource :book_marks, only: [:create, :destroy]
     end
     resources :genres
     resources :tags
-    resources :users
+    resources :users do
+      member do
+        get :book_marks
+      end
+    end
     get '/search', to: 'searches#search'
   end
 

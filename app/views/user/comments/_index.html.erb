@@ -1,0 +1,7 @@
+    <td>コメント件数：<%= @post.comments.count %></td>
+    <td>
+      <% @post.comments.each do |comment| %>
+        <%= comment.user.name %>
+        <%= comment.comment %>
+      <% end %>
+    </td>

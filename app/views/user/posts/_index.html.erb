@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>タイトル</th>
+      <th>本文</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+      <tr id="post_<%= post.id %>">
+        <td>
+          <%= link_to post.user.account_name, user_path(post.user) %>
+        </td>
+        <td>
+          <%= link_to post.title, post_path(post) class: "post_#{post.id}" %>
+        </td>
+        <td><%= post.text %></td>
+        <td><%= render "book_marks/book_marks", post: post %></td>
+        <td>コメント: <%= post.comments.count %>件</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
