@@ -1,0 +1,5 @@
+<p>いいねした投稿一覧</p>
+<%#= render partial: "posts/favorite", collection: @book_mark_posts %>
+<% @book_mark_posts.each do |post|%>
+  <%=post.title %>
+<% end %>

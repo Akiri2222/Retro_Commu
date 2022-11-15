@@ -1,8 +1,8 @@
 <% if @model == 'user' %>
 	<h3>Users search for "<%= @content %>"</h3>
-  <%= render 'users/index', users: @records %>
-<% elsif @model == 'book' %>
+  <%= render 'user/users/index', users: @records %>
+<% elsif @model == 'post' %>
 	<h3>Posts search for "<%= @content %>"</h3>
-  <%= render 'Posts/index', Posts: @records %>
+  <%= render '/user/posts/index', Posts: @records %>
 <% end %>
 

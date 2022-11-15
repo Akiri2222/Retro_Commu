@@ -1,9 +1,11 @@
-<%= @user.name %>のマイページ
+<%= @user.account_name %>のマイページ
 <table>
+  <% if current_user.id == @user.id %>
   <tr>
     <td>名前</td>
     <td><%= @user.name %></td>
   </tr>
+  <% end %>
   <tr>
     <td>アカウント名</td>
     <td><%= @user.account_name %></td>
@@ -15,6 +17,9 @@
   <tr>
     <td>自己紹介</td>
     <td><%= @user.biography %></td>
+  </tr>
+  <tr>
+    <%= link_to "いいねした投稿", book_marks_user_path(@user) %>
   </tr>
 </table>
 

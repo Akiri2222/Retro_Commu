@@ -2,42 +2,23 @@
   <tr>
     <td>
       <%= link_to user_path(@post.user.id) do %>
-        <%= @post.user.name %>
+        <%= @post.user.account_name %>
       <% end %>
     </td>
     <td><%= @post.title %></td>
     <td><%= @post.genre.name %></td>
     <td><%= @post.text %></td>
-
-    <td><%= link_to "編集", edit_post_path(@post.id) %></td>
-    <td><%= link_to "削除", post_path(@post.id), method: :delete %></td>
-  </tr>
-  <tr>
-    <td>
-      <% if @post.book_marked_by?(current_user) %>
-        <%= link_to post_book_marks_path(@post), method: :delete do %>
-          ♥<%= @post.book_marks.count %> ブックマーク
-        <% end %>
-      <% else %>
-        <%= link_to post_book_marks_path(@post), method: :post do %>
-          ♡<%= @post.book_marks.count %> ブックマーク
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>コメント件数：<%= @post.comments.count %></td>
-    <td>
-      <% @post.comments.each do |comment| %>
-        <%= comment.user.name %>
-        <%= comment.comment %>
-      <% end %>
-    </td>
-    <td>
-      <%= form_with model: [@post, @comment] do |f|  %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信" %>
-      <% end %>
-    </td>
+    <td class="book_marks"><%= render "user/book_marks/book_marks", post: @post %></td>
+    <% if @post.user == current_user %>
+      <td><%= link_to "編集", edit_post_path(@post.id) %></td>
+      <td><%= link_to "削除", post_path(@post.id), method: :delete %></td>
+    <% end %>
   </tr>
 </table>
+<table class="comments">
+ <%= render 'user/comments/index', post: @post %>
+</table>
+<%= form_with model: [@post, @comment], local: false do |f|  %>
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+  <%= f.submit "送信" %>
+<% end %>
