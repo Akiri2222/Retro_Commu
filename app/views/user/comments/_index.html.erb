@@ -3,5 +3,6 @@
       <% @post.comments.each do |comment| %>
         <%= comment.user.name %>
         <%= comment.comment %>
+        <%= link_to "削除", post_comment_path(post.id,comment.id), method: :delete, remote: true %>
       <% end %>
     </td>

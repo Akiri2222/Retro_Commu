@@ -3,6 +3,6 @@
   <%= render 'user/users/index', users: @records %>
 <% elsif @model == 'post' %>
 	<h3>Posts search for "<%= @content %>"</h3>
-  <%= render '/user/posts/index', Posts: @records %>
+  <%= render '/user/posts/index', posts: @records %>
 <% end %>
 
