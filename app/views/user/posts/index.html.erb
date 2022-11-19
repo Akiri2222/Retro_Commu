@@ -8,6 +8,9 @@
       </td>
       <td><%= post.genre.name %></td>
       <td><%= post.text %></td>
+      <td class="bookmarks_post_<%= post.id %>">
+        <%= render "user/book_marks/book_marks", post: post %>
+      </td>
     </tr>
   </table>
 <% end %>

@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   belongs_to :genre
   has_many :comments, dependent: :destroy
   has_many :book_marks, dependent: :destroy
+  has_many :post_tags, dependent: :destroy
+  has_many :tags,through: :post_tags
+
 
 
   #ブックマーク済みかどうか判定する
@@ -10,17 +13,11 @@ class Post < ApplicationRecord
     book_marks.exists?(user_id: user.id)
   end
 
+  #部分検索
   def self.search_for(content, method)
-    if method == 'perfect'
-      Post.where(title: content)
-    elsif method == 'forward'
-      Post.where('title LIKE ?', content+'%')
-    elsif method == 'backward'
-      Post.where('title LIKE ?', '%'+content)
-    else
-      Post.where('title LIKE ?', '%'+content+'%')
-    end
+    Post.where('title LIKE ?', '%'+content+'%')
   end
+
 
 
 end

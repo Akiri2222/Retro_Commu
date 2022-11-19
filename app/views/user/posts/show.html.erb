@@ -8,7 +8,7 @@
     <td><%= @post.title %></td>
     <td><%= @post.genre.name %></td>
     <td><%= @post.text %></td>
-    <td class="book_marks"><%= render "user/book_marks/book_marks", post: @post %></td>
+    <td class="bookmarks_post_<%= @post.id %>"><%= render "user/book_marks/book_marks", post: @post %></td>
     <% if @post.user == current_user %>
       <td><%= link_to "編集", edit_post_path(@post.id) %></td>
       <td><%= link_to "削除", post_path(@post.id), method: :delete %></td>
