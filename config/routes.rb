@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   namespace :user do
     get 'homes/top'
   end
+
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
 }
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+    post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

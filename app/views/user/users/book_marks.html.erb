@@ -1,5 +1,31 @@
-<p>いいねした投稿一覧</p>
+
 <%#= render partial: "posts/favorite", collection: @book_mark_posts %>
-<% @book_mark_posts.each do |post|%>
-  <%=post.title %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>ブックマークした投稿一覧</h5>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>ジャンル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <% @book_mark_posts.each do |post|%>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to post_path(post.id) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
+              <td><%= post.genre.name %></td>
+              <td><%= post.text %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,24 +1,33 @@
-<table>
-  <tr>
-    <td>
-      <%= link_to user_path(@post.user.id) do %>
-        <%= @post.user.account_name %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 45rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @post.title %></h5>
+          <p>
+            <%= link_to user_path(@post.user.id) do %>
+              <%= @post.user.account_name %>
+            <% end %>
+          </p>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @post.genre.name %></h6>
+          <p class="card-text"><%= @post.text %></p>
+          <p class="bookmarks_post_<%= @post.id %>"><%= render "user/book_marks/book_marks", post: @post %></p>
+          <% if @post.user == current_user %>
+            <div><%= link_to "編集", edit_post_path(@post.id) %></div>
+            <div><%= link_to "削除", post_path(@post.id), method: :delete %></div>
+          <% end %>
+
+        </div>
+      </div>
+      <table class="comments">
+       <%= render 'user/comments/index', post: @post %>
+      </table>
+      <%= form_with model: [@post, @comment], local: false do |f|  %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信" %>
       <% end %>
-    </td>
-    <td><%= @post.title %></td>
-    <td><%= @post.genre.name %></td>
-    <td><%= @post.text %></td>
-    <td class="bookmarks_post_<%= @post.id %>"><%= render "user/book_marks/book_marks", post: @post %></td>
-    <% if @post.user == current_user %>
-      <td><%= link_to "編集", edit_post_path(@post.id) %></td>
-      <td><%= link_to "削除", post_path(@post.id), method: :delete %></td>
-    <% end %>
-  </tr>
-</table>
-<table class="comments">
- <%= render 'user/comments/index', post: @post %>
-</table>
-<%= form_with model: [@post, @comment], local: false do |f|  %>
-  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-  <%= f.submit "送信" %>
-<% end %>
+    </div>
+  </div>
+</div>
+
+

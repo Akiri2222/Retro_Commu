@@ -1,39 +1,54 @@
 <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-        <li>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to "新規投稿", new_post_path %>
-        </li>
-        <li>
-           <%= link_to "ブックマーク一覧", book_marks_user_path(current_user) %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", posts_path %>
-        </li>
-      <% elsif admin_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
-        <li>
-          <%= link_to "ジャンル一覧", admin_genres_path %>
-        </li>
-        <li>
-          <%= link_to "ユーザー一覧", admin_users_path %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to "投稿一覧", posts_path %>
-        </li>
-      <% end %>
-    </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="align-items-center mb-3 ml-5" href="/"><%= image_tag "logo.png", size: "100x100" %></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+             <%= link_to "ブックマーク一覧", book_marks_user_path(current_user), class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-dark' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+          </li>
+        <% end %>
+        </ul>
+      <div>
+      <div>
+        <%= render 'user/searches/form' %>
+      </div>
+    <div>
+  </nav>
+</header>
