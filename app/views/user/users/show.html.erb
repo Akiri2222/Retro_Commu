@@ -1,26 +1,28 @@
-<%= @user.account_name %>のマイページ
-<table>
-  <% if current_user.id == @user.id %>
-  <tr>
-    <td>名前</td>
-    <td><%= @user.name %></td>
-  </tr>
-  <% end %>
-  <tr>
-    <td>アカウント名</td>
-    <td><%= @user.account_name %></td>
-  </tr>
-  <tr>
-    <td>メールアドレス</td>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <td>自己紹介</td>
-    <td><%= @user.biography %></td>
-  </tr>
-  <tr>
-    <%= link_to "いいねした投稿", book_marks_user_path(@user) %>
-  </tr>
-</table>
-
-<%= link_to '情報編集', edit_user_path %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4><%= @user.account_name %>のマイページ</h4>
+      <table class="table table-bordered">
+        <% if current_user.id == @user.id %>
+        <tr>
+          <td class="table-active">名前</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td class="table-active">アカウント名</td>
+          <td><%= @user.account_name %></td>
+        </tr>
+        <tr>
+          <td class="table-active">メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td class="table-active">自己紹介</td>
+          <td><%= @user.biography %></td>
+        </tr>
+      </table>
+    <% if @user.name != "guestuser" %>
+      <%= link_to '情報編集', edit_user_path, class: "btn btn-sm btn-success" %>
+      <%= link_to "いいねした投稿", book_marks_user_path(@user), class: "btn btn-sm btn-primary" %>
+    <% end %>
