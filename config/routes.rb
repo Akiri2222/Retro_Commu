@@ -22,11 +22,11 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about" => "homes#about", as: :about
 
-    resources :posts do
-      resources :comments
+    resources :posts, onry: [:index, :show, :create, :edit, :update, :destroy] do
+      resources :comments, onry: [:create, :edit, :update, :destroy]
       resource :book_marks, only: [:create, :destroy]
     end
-    resources :genres
+    resources :genres, onry: [:show]
     resources :tags
     resources :users do
       member do
@@ -38,10 +38,10 @@ Rails.application.routes.draw do
 
   get "admin" => "admin/homes#top", as: :admin
   namespace :admin do
-    resources :posts
-    resources :genres
-    resources :book_marks
-    resources :comments
+    resources :posts, onry: [:index, :show, :edit, :update, :destroy] do
+      resources :comments, onry: [:destroy]
+    end
+    resources :genres, onry: [:create, :edit, :update, :destroy]
     resources :tags
     resources :users
   end

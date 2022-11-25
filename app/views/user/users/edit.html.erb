@@ -1,24 +1,30 @@
-情報編集
-<%= form_with model: @user, url: user_path do |f| %>
-  <table>
-    <tr>
-      <td>氏名</td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td>アカウント名</td></td>
-      <td><%= f.text_field :account_name %></td>
-    </tr>
-    <tr>
-      <td>メールアドレス</td>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <td>自己紹介</td>
-      <td><%= f.text_area :biography %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit "変更を保存" %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>情報編集</h5>
+      <%= form_with model: @user, url: user_path do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td class="col-3">氏名</td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td class="col-3">アカウント名</td></td>
+            <td><%= f.text_field :account_name %></td>
+          </tr>
+          <tr>
+            <td class="col-3">メールアドレス</td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td class="col-3">自己紹介</td>
+            <td><%= f.text_area :biography %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

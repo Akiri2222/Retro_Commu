@@ -1,0 +1,17 @@
+ コメント件数：<%= @post.comments.count %>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% @post.comments.each do |comment| %>
+          <table class="table table-borderless">
+            <tr>
+              <td class="col-1"><%= comment.user.name %></td>
+              <td class="col-1"><%= comment.comment %></td>
+              <td><%= link_to "編集", edit_admin_post_comment_path(post.id,comment.id),class: 'btn btn-primary' %> <%= link_to "削除", admin_post_comment_path(post.id,comment.id),class: 'btn btn-dark',method: :delete, remote: true %></td>
+            </tr>
+          </table>
+      <% end %>
+    </div>
+  </div>
+</div>

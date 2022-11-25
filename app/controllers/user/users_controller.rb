@@ -1,6 +1,7 @@
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_current_user, only: [:edit, :update, :book_marks]
 
 
   def index
@@ -34,6 +35,14 @@ class User::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :account_name, :email, :biography)
+  end
+
+  def ensure_current_user
+    @user = User.find(params[:id])
+    if current_user.id != @user.id
+      flash[:notice]="権限がありません"
+      redirect_to("/posts")
+    end
   end
 
   def ensure_guest_user
