@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 45rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @post.title %></h5>
+          <p>
+            <%= link_to admin_user_path(@post.user.id) do %>
+              <%= @post.user.account_name %>
+            <% end %>
+          </p>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @post.genre.name %></h6>
+          <p class="card-text"><%= @post.text %></p>
+          <div><%= link_to "編集", edit_admin_post_path(@post.id) %></div>
+          <div><%= link_to "削除", admin_post_path(@post.id), method: :delete %></div>
+
+        </div>
+      </div>
+      <div class="comments">
+       <%= render 'admin/comments/index', post: @post %>
+      </div>
+    </div>
+  </div>
+</div>

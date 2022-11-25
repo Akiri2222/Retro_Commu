@@ -1,0 +1,12 @@
+<h4>ジャンル一覧</h4>
+<% genres.each do |genre| %>
+  <table>
+    <tr>
+      <td>
+        <%= link_to genre_path(genre.id) do %>
+          <h3>・<%= genre.name %></h3>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+<% end %>

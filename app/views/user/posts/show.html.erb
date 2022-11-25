@@ -19,13 +19,15 @@
 
         </div>
       </div>
-      <table class="comments">
+      <div class="comments">
        <%= render 'user/comments/index', post: @post %>
-      </table>
+      </div>
+      <div class="mt-1">
       <%= form_with model: [@post, @comment], local: false do |f|  %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
         <%= f.submit "送信" %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
