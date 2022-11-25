@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:create, :edit, :update, :destroy]
+  before_action :ensure_current_user, {only: [:edit, :update]}
 
   def new
     @post = Post.new
@@ -14,6 +15,7 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @genres = Genre.all
   end
 
   def show
@@ -45,6 +47,14 @@ class User::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:genre_id, :user_id, :title, :text)
+  end
+
+  def ensure_current_user
+    @post = Post.find(params[:id])
+    if @post.user_id != current_user.id
+      flash[:notice]="権限がありません"
+      redirect_to("/posts")
+    end
   end
 
 end

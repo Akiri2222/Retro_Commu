@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>コメント編集</h5>
+      <%= form_with model: [@post,@comment], url: post_comment_path do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td class="col-3">コメント</td></td>
+            <td><%= f.text_field :comment %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

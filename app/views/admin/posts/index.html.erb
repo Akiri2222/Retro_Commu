@@ -1,21 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <%= render 'user/genres/index', genres: @genres %>
-    </div>
     <div class="col-md-9 offset-md-1">
       <% @posts.reverse_each do |post| %>
       <div class="card" style="width: 45rem;">
         <div class="card-body">
           <h5 class="card-title">
-            <%= link_to post_path(post.id) do %>
+            <%= link_to admin_post_path(post.id) do %>
                 <%= post.title %>
               <% end %>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= post.genre.name %></h6>
           <p class="card-text"><%= post.text %></p>
           <p>コメント数：<%= post.comments.count %>件</p>
-          <p class="bookmarks_post_<%= post.id %>"><%= render "user/book_marks/book_marks", post: post %></p>
         </div>
       </div>
       <% end %>
