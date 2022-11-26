@@ -6,7 +6,8 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags,through: :post_tags
 
-
+  validates :title, presence: true
+  validates :text, presence: true
 
   #ブックマーク済みかどうか判定する
   def book_marked_by?(user)
