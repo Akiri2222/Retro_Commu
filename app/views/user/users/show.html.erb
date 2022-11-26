@@ -25,8 +25,8 @@
         </tr>
       </table>
     <% if @user.name != "guestuser" && @user.id == current_user.id %>
-      <%= link_to '情報編集', edit_user_path, class: "btn btn-sm btn-success" %>
-      <%= link_to "いいねした投稿", book_marks_user_path(@user), class: "btn btn-sm btn-primary" %>
+      <%= link_to '登録情報編集', edit_user_path, class: "btn btn-sm btn-success" %>
+      <%= link_to "ブックマーク一覧", book_marks_user_path(@user), class: "btn btn-sm btn-primary" %>
     <% end %>
     </div>
   </div>
