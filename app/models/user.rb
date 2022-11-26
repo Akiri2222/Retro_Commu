@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :book_marks, dependent: :destroy
+  validates :name, presence: true
+  validates :account_name, presence: true
 
   def self.search_for(content, method)
     User.where('name LIKE ?', '%' + content + '%')
