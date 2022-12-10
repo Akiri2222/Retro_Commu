@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :account_name, presence: true
 
   def self.search_for(content, method)
-    User.where('name LIKE ?', '%' + content + '%')
+    User.where('account_name LIKE ?', '%' + content + '%')
   end
 
 #ゲストログイン
