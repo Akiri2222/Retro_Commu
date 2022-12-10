@@ -5,7 +5,7 @@
       <%= render 'user/tags/index', tags: @tags %>
     </div>
     <div class="col-md-9 offset-md-1">
-      <% @posts.reverse_each do |post| %>
+      <% @tag.posts.reverse_each do |post| %>
       <div class="card" style="width: 45rem;">
         <div class="card-body">
           <h5 class="card-title">

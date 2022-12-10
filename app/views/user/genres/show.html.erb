@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-md-2">
       <%= render 'user/genres/index', genres: @genres %>
+      <%= render 'user/tags/index', tags: @tags %>
     </div>
     <div class="col-md-9 offset-md-1">
-      <% @genre.posts.each do |post| %>
+      <% @genre.posts.reverse_each do |post| %>
         <div class="card" style="width: 45rem;">
           <div class="card-body">
             <h5 class="card-title">
@@ -14,6 +15,17 @@
             </h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= post.genre.name %></h6>
             <p class="card-text"><%= post.text %></p>
+            <div class="d-flex">
+              <i class="fas fa-tag"></i>
+              <p class = "px-2">
+                <% post.tags.each_with_index do |tag, i| %>
+                  <%= link_to tag_path(tag.id) do %>
+                    <%= tag.name %>
+                  <% end %>
+                  <%= post.tags[i+1].present? ? ',' : '' %>
+                <% end %>
+              </p>
+            </div>
             <p>コメント数：<%= post.comments.count %>件</p>
             <p class="bookmarks_post_<%= post.id %>"><%= render "user/book_marks/book_marks", post: post %></p>
           </div>

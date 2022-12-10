@@ -13,7 +13,7 @@
         <table class="table table-borderless">
           <tr>
             <td class="col-3">タイトル</td>
-            <td><%= f.text_field :title %></td>
+            <td><%= f.text_field :title,class:"form-control" %></td>
           </tr>
           <tr>
             <td class="col-3">ジャンル</td>
@@ -21,7 +21,11 @@
           </tr>
           <tr>
             <td class="col-3">本文</td>
-            <td><%= f.text_area :text %></td>
+            <td><%= f.text_area :text,class:"form-control" %></td>
+          </tr>
+          <tr>
+            <td class="col-3">タグ</td>
+            <td><%= f.text_field :name,value: @tags,class:"form-control"%></td>
           </tr>
           <tr>
             <td><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
