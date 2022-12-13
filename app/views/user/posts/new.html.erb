@@ -13,20 +13,26 @@
         <table class="table table-borderless">
           <tr>
             <div class="form-group">
-              <td><%= f.label :name,"タイトル" %></td>
+              <td><%= f.label :title,"タイトル" %></td>
               <td><%= f.text_field :title %></td>
             </div>
           </tr>
           <tr>
             <div class="form-group">
-              <td><%= f.label :name,"ジャンル" %></td>
+              <td><%= f.label :genre,"ジャンル" %></td>
               <td><%= f.collection_select(:genre_id, Genre.all, :id, :name) %></td>
             </div>
           </tr>
           <tr>
             <div class="form-group">
-              <td><%= f.label :name,"本文" %></td>
+              <td><%= f.label :text,"本文" %></td>
               <td><%= f.text_area :text %></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="form-group">
+              <td><%= f.label :tag,"タグ付け" %></td>
+              <td><%= f.text_area :name, placeholder:",で区切ると複数タグ付けができます"  %></td>
             </div>
           </tr>
         </table>

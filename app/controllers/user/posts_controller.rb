@@ -9,7 +9,9 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tags = params[:post][:name].split(',')
     if @post.save
+      @post.save_tags(tags)
       redirect_to posts_path
     else
       render :new
@@ -19,6 +21,7 @@ class User::PostsController < ApplicationController
   def index
     @posts = Post.all
     @genres = Genre.all
+    @tags=Tag.all
   end
 
   def show
@@ -28,11 +31,14 @@ class User::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
+    tags = params[:post][:name].split(',')
     if @post.update(post_params)
+      @post.update_tags(tags)
       redirect_to post_path(@post)
     else
       render :edit
@@ -41,6 +47,7 @@ class User::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @post.update_tags([])
     @post.destroy
     redirect_to posts_path
   end
