@@ -29,7 +29,6 @@ class Post < ApplicationRecord
 
   #タグ更新
   def update_tags(latest_tags)
-    #既存タグの確認
     tags = Tag.all
     post_tags = PostTag.all
     current_tags = self.tags
