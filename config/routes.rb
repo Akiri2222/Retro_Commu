@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       resource :book_marks, only: [:create, :destroy]
     end
     resources :genres, onry: [:show]
-    resources :tags
+    resources :tags, only: [:show]
     resources :users do
       member do
         get :book_marks
