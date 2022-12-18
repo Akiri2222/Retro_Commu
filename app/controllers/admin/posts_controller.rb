@@ -4,6 +4,7 @@ class Admin::PostsController < ApplicationController
   def index
     @posts = Post.all
     @genres = Genre.all
+    @tags=Tag.all
   end
 
   def show
@@ -13,11 +14,13 @@ class Admin::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      @post.update_tags(tags)
       redirect_to admin_post_path(@post)
     else
       render :edit
@@ -26,6 +29,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @post.update_tags([])
     @post.destroy
     redirect_to admin_posts_path
   end

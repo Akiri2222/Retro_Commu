@@ -11,6 +11,15 @@
           </p>
           <h6 class="card-subtitle mb-2 text-muted"><%= @post.genre.name %></h6>
           <p class="card-text"><%= @post.text %></p>
+          <div class="d-flex">
+            <i class="fas fa-tag"></i>
+            <p class = "px-2">
+              <% @post.tags.each_with_index do |tag, i| %>
+                <%= tag.name %>
+                <%= @post.tags[i+1].present? ? ',' : '' %>
+              <% end %>
+            </p>
+          </div>
           <div><%= link_to "編集", edit_admin_post_path(@post.id) %></div>
           <div><%= link_to "削除", admin_post_path(@post.id), method: :delete %></div>
 
