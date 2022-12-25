@@ -15,7 +15,9 @@
             <i class="fas fa-tag"></i>
             <p class = "px-2">
               <% @post.tags.each_with_index do |tag, i| %>
-                <%= tag.name %>
+                <%= link_to tag_path(tag.id) do %>
+                  <%= tag.name %>
+                <% end %>
                 <%= @post.tags[i+1].present? ? ',' : '' %>
               <% end %>
             </p>
